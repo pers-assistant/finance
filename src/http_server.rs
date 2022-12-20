@@ -5,10 +5,11 @@ use actix_web::{web, App, HttpServer};
 use crate::handlers::{health_check};
 
 pub fn run(listener: TcpListener) -> Result<Server, std::io::Error> {
+    println!("Service started bind: {}", listener.local_addr().unwrap());
     let server = HttpServer::new(move || {
         App::new().route("health_check", web::get().to(health_check))
     })
-        .listen(listener)?
-        .run();
+    .listen(listener)?
+    .run();
     Ok(server)
 }

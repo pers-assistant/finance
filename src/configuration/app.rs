@@ -1,0 +1,20 @@
+use crate::configuration::{http, postgres};
+
+pub struct AppConfig {
+    pub http: http::HttpConfig,
+    pub db: postgres::PostgresConfig,
+}
+
+impl AppConfig {
+    pub fn new() -> Result<AppConfig, &'static str> {
+        let http_config = http::get_configuration().unwrap();
+        let postgres_config = postgres::get_configuration().unwrap();
+
+        let app_config = AppConfig{
+            http: http_config,
+            db: postgres_config,
+        };
+
+        Ok(app_config)
+    }
+}
