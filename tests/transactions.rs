@@ -1,15 +1,18 @@
 mod common;
 
 #[tokio::test]
-async fn health_check_works() {
+async fn transactions_add() {
     // Arrange
     let address = common::spawn_app().await;
     let client = reqwest::Client::new();
 
+
+
     // Act
     let response = client
         // Use the returned application address
-        .get(&format!("{}/health_check", &address))
+        .post(&format!("{}/transaction", &address))
+        .json("{'sum': '100.0'}")
         .send()
         .await
         .expect("Failed to execute request.");
