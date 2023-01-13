@@ -1,12 +1,10 @@
 mod common;
 
 #[tokio::test]
-async fn transactions_add() {
+async fn add_transactions() {
     // Arrange
     let address = common::spawn_app().await;
     let client = reqwest::Client::new();
-
-
 
     // Act
     let response = client
