@@ -15,6 +15,7 @@ name = "finance"
 
 [dependencies]
 actix-web = "4"
+chrono = { version = "0.4.22", default-features = false, features = ["clock"] }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 serde = { version = "1.0", features = ["derive"] }
 config = { version = "0.13", default-features = false, features = ["yaml"] }
@@ -38,4 +39,5 @@ features = [
 ]
 
 [dev-dependencies]
+once_cell = "1.17.0"
 reqwest = { version = "0.11", features = ["json"] }
