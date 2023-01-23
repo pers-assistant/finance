@@ -37,6 +37,6 @@ async fn add_transactions() {
         .await
         .expect("Failed to fetch saved subscription.");
 
-    assert_eq!(saved.title, "ursula_le_guin@gmail.com");
-    assert_eq!(saved.amount "le guin");
+    assert_eq!(saved.title, title);
+    assert_eq!(saved.amount, amount);
 }
