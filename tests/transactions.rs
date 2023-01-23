@@ -3,13 +3,13 @@ mod common;
 #[tokio::test]
 async fn add_transactions() {
     // Arrange
-    let address = common::spawn_app().await;
+    let app = common::spawn_app().await;
     let client = reqwest::Client::new();
 
     // Act
     let response = client
         // Use the returned application address
-        .post(&format!("{}/transaction", &address))
+        .post(&format!("{}/transaction", &app.address))
         .json("{'sum': '100.0'}")
         .send()
         .await

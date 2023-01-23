@@ -3,3 +3,4 @@ password: "dbadmin"
 host: "localhost"
 port: 5432
 dbname: "finance"
+require_ssl: false

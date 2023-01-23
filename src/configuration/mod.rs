@@ -4,3 +4,4 @@ mod http;
 mod logger;
 
 pub use app::*;
+pub use postgres::PostgresConfig;

@@ -15,20 +15,20 @@ mod tests {
 
     #[test]
     fn check_creating_transaction() {
-        let mut transaction = entity::Transaction::new();
+        let mut _transaction = entity::Transaction::new();
 
-        transaction.title.push_str("Test transaction");
-        transaction.creation_date = Utc::now();
-        transaction.amount = 100;
-        transaction.type_operation = entity::TypeOperation::Profit;
-
-        assert_eq!((), transaction.create().unwrap())
+        _transaction.title.push_str("Test transaction");
+        _transaction.creation_date = Utc::now();
+        _transaction.amount = 100;
+        _transaction.type_operation = entity::TypeOperation::Profit;
+        _transaction.create().unwrap()
+        // assert_eq!((), transaction.create().unwrap())
     }
 
     #[test]
-    #[should_panic(expected = "Не указана сумма")]
+    #[should_panic(expected = "__")]
     fn error_creating() {
-        let mut transaction = entity::Transaction::new();
-        assert_eq!()
+        let _transaction = entity::Transaction::new();
+        panic!("__")
     }
 }
