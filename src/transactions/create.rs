@@ -3,6 +3,7 @@ use super::entity;
 
 
 impl entity::Transaction {
+    /// Create transaction in database
     pub fn create(&self) -> Result<(), std::io::Error> {
         Ok(())
     }
