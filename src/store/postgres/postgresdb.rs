@@ -1,10 +1,10 @@
 // postgres.rs
-
+use crate::configuration::PostgresConfig;
 
 
 pub struct PostgresDB {
-    connection:
-    config
+    // pub connection: Connection,
+    pub config: PostgresConfig
 }
 
 

@@ -1,5 +1,5 @@
-
+use sqlx::Connection;
 
 pub trait Store {
-    fn create_transaction() -> ();
+    fn create_transaction();
 }

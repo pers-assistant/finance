@@ -1,3 +1,3 @@
-mod postgresdb;
+pub mod postgresdb;
 mod transaction;
 

@@ -1,5 +1,7 @@
 use actix_web::HttpResponse;
 
+use crate::store::Store;
+
 #[tracing::instrument(
     name = "Adding a new subscriber.",
     skip(),
