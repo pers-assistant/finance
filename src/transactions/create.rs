@@ -21,7 +21,7 @@ mod tests {
         let mut _transaction = entity::Transaction::new();
 
         _transaction.title.push_str("Test transaction");
-        _transaction.creation_date = Utc::now();
+        // _transaction.creation_date = Utc::now();
         _transaction.amount = 100;
         _transaction.type_operation = entity::TypeOperation::Profit;
         _transaction.create().unwrap();
