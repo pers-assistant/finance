@@ -5,8 +5,8 @@ use actix_web::{web, App, HttpServer};
 use sqlx::PgPool;
 use tracing_actix_web::TracingLogger;
 
-
-use crate::handlers::{health_check, add_transactions};
+use crate::handlers::{health_check};
+use crate::handlers::transaction_config;
 
 // struct Http<T> {
 //     server: Server,
@@ -20,7 +20,7 @@ pub fn run(listener: TcpListener, db_pool: PgPool) -> Result<Server, std::io::Er
         App::new()
             .wrap(TracingLogger::default())
             .route("health_check", web::get().to(health_check))
-            .route("transaction", web::post().to(add_transactions))
+            .configure(transaction_config)
             .app_data(db_pool.clone())
         //todo!("Вынести добавление хэндлеров в отдельную функцию");
         //todo!("Добавить абстракцию между http сервером и типом БД");

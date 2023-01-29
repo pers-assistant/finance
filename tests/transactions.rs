@@ -4,7 +4,7 @@ use chrono::Utc;
 
 
 #[tokio::test]
-async fn add_transactions() {
+async fn create_transactions() {
     // Arrange
     let app = common::spawn_app().await;
     let client = reqwest::Client::new();

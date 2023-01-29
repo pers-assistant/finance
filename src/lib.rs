@@ -7,3 +7,5 @@ pub mod telemetry;
 mod amounts;
 mod transactions;
 mod store;
+mod app;
+

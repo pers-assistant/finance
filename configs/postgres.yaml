@@ -2,5 +2,5 @@ username: "dbadmin"
 password: "dbadmin"
 host: "localhost"
 port: 5432
-dbname: "finance"
+dbname: "financedb"
 require_ssl: false

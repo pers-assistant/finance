@@ -1,4 +1,5 @@
 use chrono::{DateTime, Utc};
+use serde_aux::field_attributes::deserialize_number_from_string;
 
 #[derive(serde::Deserialize, serde::Serialize)]
 pub enum TypeOperation {
@@ -6,11 +7,13 @@ pub enum TypeOperation {
     Expense,
     Transfer,
 }
+
 #[derive(serde::Deserialize, serde::Serialize)]
 pub struct Transaction {
     pub title: String,
     // pub creation_date: DateTime<Utc>,
     // pub date_operation: DateTime<Utc>,
+    #[serde(deserialize_with = "deserialize_number_from_string")]
     pub amount: u32,
     pub type_operation: TypeOperation
 }

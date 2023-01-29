@@ -1,3 +1,5 @@
-pub mod postgresdb;
+mod postgresdb;
 mod transaction;
+
+pub use postgresdb::PostgresDB;
 
