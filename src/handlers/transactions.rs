@@ -1,27 +1,24 @@
 use actix_web::{HttpResponse, web};
 use sqlx::PgPool;
+use crate::app::App;
 
-use crate::store::Store;
+use crate::store::{PostgresDB, Store};
 use crate::transactions::Transaction;
 
 #[tracing::instrument(
     name = "Create a new transaction.",
-    skip(form, pool),
+    skip(form, app),
     fields(
         title = %form.title,
         amount = %form.amount
     )
 )]
-pub async fn create_transactions(form: web::Form<Transaction>, pool: web::Data<PgPool>) -> HttpResponse {
-    // let transaction = Transaction {
-    //     title: form.0.title,
-    //     amount: form.0.amount,
-    //     type_operation: form.0.type_operation,
-    // };
+pub async fn create_transactions<DB: Store>(form: web::Form<Transaction>, app: web::Data<App<DB>>) -> HttpResponse {
+    app.store.;
     HttpResponse::Ok().finish()
 }
 
-// this function could be located in a different module
+// transaction_config configure routes for http server
 pub fn transaction_config(cfg: &mut web::ServiceConfig) {
     cfg.service(web::resource("/transaction")
             .route(web::post().to(create_transactions))

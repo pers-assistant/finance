@@ -3,18 +3,18 @@ use std::path::Path;
 use sqlx::ConnectOptions;
 use sqlx::postgres::{PgConnectOptions, PgSslMode};
 
-#[derive(serde::Deserialize)]
+#[derive(serde::Deserialize, Copy, Clone)]
 pub struct PostgresConfig {
     pub username: String,
     pub password: String,
     pub host: String,
     pub port: u16,
     pub dbname: String,
-
     pub require_ssl: bool,
 }
 
 impl PostgresConfig {
+    /// without_db - returned database options without database name
     pub fn without_db(&self) -> PgConnectOptions {
         let ssl_mode = if self.require_ssl {
             PgSslMode::Require
@@ -29,22 +29,22 @@ impl PostgresConfig {
             .port(self.port)
             .ssl_mode(ssl_mode)
     }
-
+    
+    /// without_db - returned database options with database name postgres
     pub fn with_postgres_db(&self) -> PgConnectOptions {
         let mut options = self.without_db().database("postgres");
         options.log_statements(log::LevelFilter::Trace);
         options
     }
 
-
+    /// without_db - returned database options with database name from config file
     pub fn with_db(&self) -> PgConnectOptions {
         self.without_db().database(&self.dbname)
     }
 
-
 }
 
-
+/// get_configuration parsed postgres configuration from yaml file
 pub fn get_configuration(config_path: &str) -> Result<PostgresConfig, config::ConfigError> {
     let config_file = Path::new(config_path).join("postgres.yaml");
 
@@ -56,3 +56,4 @@ pub fn get_configuration(config_path: &str) -> Result<PostgresConfig, config::Co
         .build()?;
     conf.try_deserialize::<PostgresConfig>()
 }
+
